@@ -1,6 +1,59 @@
 # Changelog
 ---------
 
+### 8.0.0 (July 28, 2023)
+
+- Security: Renamed the cookie and set secure attribute for cookie transmission when https is present
+- Security: Migrated off known deprecated, vulnerable or unmaintained dependencies
+- Security: Added express rate limiter
+- Added additional sanitization and validation for external inputs. Lusca provides input protection. The additional sanitization and validation are to add another layer of protection.
+- Added patch-package for temporary patching dependencies
+- Temporary patch for passportjs to handle logout failures
+- Temporary patch for passport-oauth2: better auth failure reporting
+- Removed broken Instagram oauth support as Meta no longer supports it
+- Added handler for 404(page not found) to avoid 500 errors when a route is not found
+- Fixed unhandled error during logout
+- Fixed pug tags with multiple attributes (thanks to @soundz77)
+- Added Lint-stage and Husky to lint all commits
+- Fix req.logout for passport 0.6
+- Fix broken unit test
+- Update default gravatar
+- Visual UI improvements
+- Added Github Actions: NodeJS CI check unit test and lint
+- Upgrade nodejs for docker
+- Removed express-handlebars npm package as it was not used and is not that popular compared to pug (breaking change)
+- Removed chalk  npm package as it was not used (breaking change)
+- Updated documentation
+
+- Upgraded to mongoose 7 (breaking change)
+- Upgraded to popper2
+- Migrated from googleapis npm package to @googleapis/drive and @googleapis/sheets to reduce size and improve performance (breaking change)
+- Migrated from passport-twitch-new to twitch-passport (breaking change)
+- Migrated from lob to @lob/lob-typescript-sdk (breaking change)
+- Migrated from deprecated node-sass to Dart Sass
+- Migrated off passport-openid (breaking change)
+- Migrated off nodemailer-sendgrid (breaking change)
+- Migrated off passport-twitter and twitter-lite (breaking change)
+- Migrated off node-quickbooks (breaking change)
+- Updated dependencies
+- Removed travis.yml
+
+API example changes:
+- Removed the twitter API example as the APIs are actively changing and mostly not free (breaking change)
+- Removed the Instagram API example as it was broken and Meta has significantly reduced the API scope and availablity for devs
+- Improved the Chartjs+AlphaVantage to handle API failures
+- Fix minor formatting issues and missing images
+- Tumblr - Fixed the Tumblr example and moved off tumblrjs (breaking change)
+- Added missing parameters for the Lob's new API requirements
+- Improved the Last.fm API example as the artist image is no longer vended by last.fm
+
+
+### 7.0.0 (Mar 26, 2022)
+- Dropped support for Node.js <16
+- Switched to Bootstrap 5
+- Removed older Bootstrap 4 themes
+- Updated dependencies
+
 ### 6.0.0 (January 2, 2020)
 - Dropped support for NodeJS 8.x, due to its EOL
 - Use HTML5 native client form validation (thanks to @peterblazejewicz)
@@ -177,7 +230,7 @@
 - Updated dependencies
 
 ### 4.1.0 (July 23, 2016)
-- Improved redirect logic after login [#435](https://github.com/sahat/hackathon-starter/pull/435)
+- Improved redirect logic after login [#435](https://github.com/ph3ar/public-phone/pull/435)
 - Removed Venmo API (see [Venmo Halts New Developer Access To Its API](https://techcrunch.com/2016/02/26/how-not-to-run-a-platform/))
 - Removed BitGo API due to issues with `secp256k1` dependency on Windows
 
@@ -240,7 +293,7 @@
 
 ### 3.2.0 (October 19, 2015)
 - Added Google Analytics script.
-- Split *api.js* `require` intro declaration and initialization for better performance. (See <a href="https://github.com/sahat/hackathon-starter/issues/247">#247</a>)
+- Split *api.js* `require` intro declaration and initialization for better performance. (See <a href="https://github.com/ph3ar/public-phone/issues/247">#247</a>)
 - Removed [ionicons](http://ionicons.com).
 - Removed [connect-assets](https://github.com/adunkman/connect-assets). (Replaced by [node-sass-middleware](https://github.com/sass/node-sass-middleware))
 - Fixed alignment styling on /login, /profile and /account
@@ -278,7 +331,7 @@
 - Removed Nodejitsu instructions from README.
 
 ### 3.0.1 (February 23, 2015)
-- Reverted Sass to LESS stylesheets. See <a href="https://github.com/sahat/hackathon-starter/issues/233">#233</a>.
+- Reverted Sass to LESS stylesheets. See <a href="https://github.com/ph3ar/public-phone/issues/233">#233</a>.
 - Convert email to lower case in Passport's LocalStrategy during login.
 - New Lob API.
 - Updated Font Awesome to 4.3.0
@@ -310,12 +363,12 @@
 - Removed `helperContext` from connect-assets middleware.
 
 ### 2.3.4 (October 27, 2014)
-- Font Awesome 4.2.0 [01e7bd5c09926911ca856fe4990e6067d9148694](https://github.com/sahat/hackathon-starter/commit/01e7bd5c09926911ca856fe4990e6067d9148694)
-- Code cleanup in `app.js` and `controllers/api.js`. [8ce48f767c0146062296685cc101acf3d5d224d9](https://github.com/sahat/hackathon-starter/commit/8ce48f767c0146062296685cc101acf3d5d224d9) [cdbb9d1888a96bbba92d4d14deec99a8acba2618](https://github.com/sahat/hackathon-starter/commit/cdbb9d1888a96bbba92d4d14deec99a8acba2618)
-- Updated Stripe API example. [afef373cd57b6a44bf856eb093e8f2801fc2dbe2](https://github.com/sahat/hackathon-starter/commit/afef373cd57b6a44bf856eb093e8f2801fc2dbe2)
-- Added 1-step deployment process with Heroku and mLab add-on. [c5def7b7b3b98462e9a2e7896dc11aaec1a48b3f](https://github.com/sahat/hackathon-starter/commit/c5def7b7b3b98462e9a2e7896dc11aaec1a48b3f)
-- Updated Twitter apps dashboard url. [e378fbbc24e269de69494d326bc20fcb641c0697](https://github.com/sahat/hackathon-starter/commit/e378fbbc24e269de69494d326bc20fcb641c0697)
-- Fixed dead links in the README. [78fac5489c596e8bcef0ab11a96e654335573bb4](https://github.com/sahat/hackathon-starter/commit/78fac5489c596e8bcef0ab11a96e654335573bb4)
+- Font Awesome 4.2.0 [01e7bd5c09926911ca856fe4990e6067d9148694](https://github.com/ph3ar/public-phone/commit/01e7bd5c09926911ca856fe4990e6067d9148694)
+- Code cleanup in `app.js` and `controllers/api.js`. [8ce48f767c0146062296685cc101acf3d5d224d9](https://github.com/ph3ar/public-phone/commit/8ce48f767c0146062296685cc101acf3d5d224d9) [cdbb9d1888a96bbba92d4d14deec99a8acba2618](https://github.com/ph3ar/public-phone/commit/cdbb9d1888a96bbba92d4d14deec99a8acba2618)
+- Updated Stripe API example. [afef373cd57b6a44bf856eb093e8f2801fc2dbe2](https://github.com/ph3ar/public-phone/commit/afef373cd57b6a44bf856eb093e8f2801fc2dbe2)
+- Added 1-step deployment process with Heroku and mLab add-on. [c5def7b7b3b98462e9a2e7896dc11aaec1a48b3f](https://github.com/ph3ar/public-phone/commit/c5def7b7b3b98462e9a2e7896dc11aaec1a48b3f)
+- Updated Twitter apps dashboard url. [e378fbbc24e269de69494d326bc20fcb641c0697](https://github.com/ph3ar/public-phone/commit/e378fbbc24e269de69494d326bc20fcb641c0697)
+- Fixed dead links in the README. [78fac5489c596e8bcef0ab11a96e654335573bb4](https://github.com/ph3ar/public-phone/commit/78fac5489c596e8bcef0ab11a96e654335573bb4)
 
 ### 2.3.3 (September 1, 2014)
 - Use *https* (instead of http) profile image URL with Twitter authentication
