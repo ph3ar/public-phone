@@ -1,0 +1,31 @@
+filebeat.modules:
+  - module: elasticsearch
+    logs:
+      enabled: true
+    metrics:
+      enabled: true
+    hosts: ["localhost:9200"]
+  
+  - module: kibana
+    metricsets: ["status"]
+    enabled: true
+    hosts: ["http//kibana:5601"]
+
+  - module: rabbitmq
+    metricsets: ["node"]
+    enabled: true
+    hosts: ["http://rabbitmq:15672"]
+
+  - module: jaeger
+    metricsets: ["collector"]
+    enabled: true
+    hosts: ["http://jaeger:14250"]
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+logging.level: debug
+logging.selectors: ["*"]

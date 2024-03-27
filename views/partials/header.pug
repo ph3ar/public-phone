@@ -10,8 +10,8 @@
 //      ul.nav.navbar-nav
 //        li.nav-item(class=(title === 'Home') ? 'active' : undefined)
 //          a.nav-link(href='/') Home
-//        li.nav-item(class=(title === 'API Examples') ? 'active' : undefined)
-//          a.nav-link(href='/api') API Examples
+//        li.nav-item(class=(title === 'API') ? 'active' : undefined)
+//          a.nav-link(href='/api') API
 //        li.nav-item(class=(title === 'Contact') ? 'active' : undefined)
 //          a.nav-link(href='/contact') Contact
 //      ul.nav.navbar-nav.ml-auto
@@ -49,9 +49,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         li.nav-item
           a.nav-link(class=(title === 'Home') ? 'active' : '', href='/') Home
         li.nav-item
-          a.nav-link(class=(title === 'API Examples') ? 'active' : '', href='/api') API Examples
+          a.nav-link(class=(title === 'API') ? 'active' : '', href='/api') API
         li.nav-item
           a.nav-link(class=(title === 'Contact') ? 'active' : '', href='/contact') Contact
+        li.nav-item
+          a.nav-link(class=(title === 'Meet') ? 'active' : '', href='/Jitsi') Video Call
+
 
       form.d-flex
         if !user

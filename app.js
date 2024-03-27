@@ -16,12 +16,10 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const multer = require('multer');
 const rateLimit = require('express-rate-limit');
-
+const exec = require('child_process').exec;
+const jitsiController = require('./controllers/jitsi');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
-/**
- * Load environment variables from .env file, where API keys and passwords are configured.
- */
 dotenv.config({ path: '.env.example' });
 
 /**
@@ -50,6 +48,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+/** const contactController = require('./controllers/jitsi');
 
 /**
  * API keys and Passport configuration.
@@ -157,6 +156,7 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+app.get('/jitsi', passportConfig.isAuthenticated, jitsiController.getJitsi);
 
 /**
  * API examples routes.
@@ -189,7 +189,24 @@ app.get('/api/google/drive', passportConfig.isAuthenticated, passportConfig.isAu
 app.get('/api/chart', apiController.getChart);
 app.get('/api/google/sheets', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getGoogleSheets);
 app.get('/api/quickbooks', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getQuickbooks);
+app.post('/api/upload', upload.single('myFile'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
 
+  const filePath = path.join(__dirname, 'uploads', req.file.filename);
+  
+  // Replace 'your_python_script.py' with your actual Python script's filename
+  exec(`python3 stannp/test2.py --file "${filePth}"`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Execution error: ${error}`);
+      return res.status(500).send(`Error executing Python script: ${error.message}`);
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+    res.send(`File uploaded and Python script executed.\nOutput: ${stdout}`);
+  });
+});
 /**
  * OAuth authentication routes. (Sign in)
  */

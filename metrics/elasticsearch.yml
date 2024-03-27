@@ -1,0 +1,9 @@
+# Check if the directory exists and is a directory
+if [ ! -d "/usr/share/elasticsearch/data/nodes/0" ]; then
+    echo "Directory /usr/share/elasticsearch/data/nodes/0 does not exist. Creating it..."
+    mkdir -p /usr/share/elasticsearch/data/nodes/0
+    # Ensure the Elasticsearch user has ownership, replace 'elasticsearch' with the actual username if different
+    chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+else
+    echo "Directory exists."
+fi
